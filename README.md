@@ -8,7 +8,7 @@ DadaGP is:
 
 # Usage
 
-### #ENCODE (guitar pro --> tokens)
+#### ENCODE (guitar pro --> tokens)
 ```
 python dadagp.py encode input.gp3 output.txt [artist_name]
 python dadagp.py encode examples/progmetal.gp3 progmetal.tokens.txt unknown
