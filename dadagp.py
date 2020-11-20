@@ -2,16 +2,13 @@
 
 import os
 import json
-import guitarpro
+import guitarpro # Note: works only with PyGuitarPro version 0.6
 import guitarpro as gp
-import matplotlib.pyplot as plt
 from collections import Counter
-from numpy import diff
 import re
 import json
 import math
 from fractions import Fraction
-from unidecode import unidecode
 import sys
 
 from token_splitter import split_rare_token, unsplit_fx
@@ -155,6 +152,26 @@ instrument_groups = {0: 'leads',
  126: 'remove',
  127: 'remove',
  255: 'drums'}
+
+# Basically the same function as numpy.diff
+# Subtracts consecutive numbers
+# Takes a list of numbers as input size n, returns list of numbers size n-1 
+def diff(number_list):
+    nums = len(number_list)
+    if nums<=1:
+        return []
+    diff_list = []
+    for i in range(0,nums-1):
+        diff_list.append(number_list[i+1]-number_list[i])
+    return diff_list
+assert diff([])==[]
+assert diff([9])==[]
+assert diff([9,9])==[0]
+assert diff([9,10])==[1]
+assert diff([9,8])==[-1]
+assert diff([1,2,3,4])==[1,1,1]
+assert diff([69,64,60,55,50,45])==[-5, -4, -5, -5, -5]
+
 
 # Returns the instrument group (string) given the Track object
 # Throws error if track is not supported (no Banjo)
@@ -319,62 +336,6 @@ assert bass_downtunage(['C4', 'G3', 'D3', 'A2', 'E2', 'B1']) == 0
 def get_artist(file):
     # artist_name should be the parent folder in the directory structure
     return file.split("/")[-2]
-
-# from the artist_name get the artist_token 
-def get_artist_token(artist_name):
-    # transliterate unicode characters to ascii
-    # I first considered keeping accent characters out of respect for the artists
-    # But character encoding errors are subtle and tricky to debug and I want to avoid anyone having to do that
-    # Especially since these chars might be represented in strings inside of Tensorflow.. could get weird
-    # I don't want to have to realize unicode isn't supported somewhere down the line
-    # Better to use ascii from the start
-    name = unidecode(artist_name) 
-    name = re.sub("['.]", "", name) # remove some punctuation
-    name = name.lower() # make lower case
-    # first name, last name
-    s = name.split(",")
-    if(len(s)==2):
-        name = s[1] + " " + s[0]
-    # put The at the beginning
-    thes = ["the","les","las","los","la","el","le","da","os","els"]
-    for the in thes:
-        l = len(the)
-        if len(name)>6 and name[-2-l:] == "(%s)" % the:
-            name = "%s %s" % (the, name[:-3-l])
-    # replace non alphanumeric with underscore.
-    name = re.sub("[^\w\&\-_\(\)\@\.\'!~°]+", "_", name) 
-    # no trailing underscore
-    if(name[-1]=="_"):
-        name = name[:-1]
-    if(name[0]=="_"):
-        name = name[1:]
-    # condense some other punctuation
-    name = name.replace("_&_","_&_")
-    name = name.replace("_-_","_")
-    return name
-
-assert get_artist("/home/ubuntu/gptabs/O/Opeth/Opeth - Bleak.gp3") == 'Opeth'
-assert get_artist("/home/ubuntu/gptabs/G/Guitar Player Lições/file.gp3") == 'Guitar Player Lições'
-assert get_artist("/Users/cj/Desktop/dadagp-1.2/home/ubuntu/DadaGP/O/Opeth/Opeth - Closure.gp4") == "Opeth"
-
-assert get_artist_token("Opeth") == 'opeth'
-assert get_artist_token("Tchaikovsky, Pioter Ilych") == 'pioter_ilych_tchaikovsky'
-assert get_artist_token("Transplants (The)") == 'the_transplants'
-assert get_artist_token("TBA (To Be Announced)") == 'tba_(to_be_announced)'
-assert get_artist_token("Guitar Player Lições") == 'guitar_player_licoes'
-assert get_artist_token("Gasté, Bernard") == 'bernard_gaste'
-assert get_artist_token("V.p.c.f.V (Les)") == 'les_vpcfv'
-assert get_artist_token("Virtu@l Lulu") == 'virtu@l_lulu'
-
-# they should also convert to themselves
-assert get_artist_token("opeth") == 'opeth'
-assert get_artist_token("pioter_ilych_tchaikovsky") == 'pioter_ilych_tchaikovsky'
-assert get_artist_token("the_transplants") == 'the_transplants'
-assert get_artist_token("tba_(to_be_announced)") == 'tba_(to_be_announced)'
-assert get_artist_token("guitar_player_licoes") == 'guitar_player_licoes'
-assert get_artist_token("bernard_gaste") == 'bernard_gaste'
-assert get_artist_token("les_vpcfv") == 'les_vpcfv'
-assert get_artist_token("virtu@l_lulu") == 'virtu@l_lulu'
 
 # round tempo to nearest 10bpm
 def roundtempo(tempo):
