@@ -8,6 +8,14 @@ DadaGP is:
 
 # Usage
 
+#### Requirements
+
+* python3
+* PyGuitarPro 0.6 *(it ONLY works with 0.6 -- if you're using a newer version, install 0.6 in a virtual environment to run dadagp.py)*
+```
+pip install 'PyGuitarPro==0.6'
+```
+
 #### ENCODE (guitar pro --> tokens)
 ```
 python dadagp.py encode input.gp3 output.txt [artist_name]
