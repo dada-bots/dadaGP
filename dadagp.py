@@ -2082,15 +2082,18 @@ def main():
 Usage:
 
 ENCODE (guitar pro --> tokens)
-python dadagp.py encode bleak.gp5 bleak.txt
+python dadagp.py encode input.gp3 output.txt [artist_name]
+python dadagp.py encode examples/progmetal.gp3 progmetal.tokens.txt unknown
 
 DECODE (tokens --> guitar pro)
-python dadagp.py decode harvest.txt harvest.gp5
+python dadagp.py decode input.txt output.gp5
+python dadagp.py encode progmetal.tokens.txt progmetal.decoded.gp5
 
 Note: only gp3, gp4, gp5 files supported by encoder.
-Note: rare combinations of instruments and tunings may not be supported.
+Rare combinations of instruments and tunings may not be supported. 
+Instrument changes are not supported. Banjos are not supported. 
 """
-    if sys.argv[1] in ["encode", "decode"] and len(sys.argv)>=4:
+    if len(sys.argv)>=4 and sys.argv[1] in ["encode", "decode"]:
         input_file = sys.argv[2]
         output_file = sys.argv[3]
         if(not os.path.exists(input_file)):
@@ -2103,7 +2106,7 @@ Note: rare combinations of instruments and tunings may not be supported.
                 artist_token = sys.argv[4]
             except:
                 artist_token = "unknown" # default
-            dadagp_encode(input_file, output_file, artist)
+            dadagp_encode(input_file, output_file, artist_token)
         else:
             dadagp_decode(input_file, output_file)
         print("done.")
