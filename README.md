@@ -8,12 +8,21 @@ DadaGP is:
 
 # Usage
 
-#### ENCODE (guitar pro --> tokens)
-`python dadagp.py encode song.gp5 song.txt`
+### #ENCODE (guitar pro --> tokens)
+```
+python dadagp.py encode input.gp3 output.txt [artist_name]
+python dadagp.py encode examples/progmetal.gp3 progmetal.tokens.txt unknown
+```
 
 #### DECODE (tokens --> guitar pro)
-`python dadagp.py decode song.txt song.gp5`
+```
+python dadagp.py decode input.txt output.gp5
+python dadagp.py encode progmetal.tokens.txt progmetal.decoded.gp5
+```
 
-Note: only gp3, gp4, gp5 files supported by encoder.
-Note: rare combinations of instruments and tunings may not be supported.
+Note:
+* only gp3, gp4, gp5 files supported by encoder.
+* rare combinations of instruments and tunings may not be supported.
+* banjo is not supported
+* instrument-change events are not supported
 
