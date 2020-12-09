@@ -25,7 +25,7 @@ python dadagp.py encode examples/progmetal.gp3 progmetal.tokens.txt unknown
 #### DECODE (tokens --> guitar pro)
 ```
 python dadagp.py decode input.txt output.gp5
-python dadagp.py encode progmetal.tokens.txt progmetal.decoded.gp5
+python dadagp.py decode progmetal.tokens.txt progmetal.decoded.gp5
 ```
 
 Note:
