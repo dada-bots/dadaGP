@@ -1,12 +1,15 @@
-# DadaGP v1.1 Encoder/Decoder
+# DadaGP
+
+[**Paper**](https://archives.ismir.net/ismir2021/paper/000076.pdf) | [**Generation Results**](https://archives.ismir.net/ismir2021/paper/000076.pdf)
+
 DadaGP is:
 
-1. a dataset* of ~26k GuitarPro songs in ~800 genres, converted to a token sequence format for generative language models like GPT2, TransformerXL, etc
-2. an encoder/decoder that converts gp3,gp4,gp5 files to/from this token format.
+1. a dataset* of ~26k GuitarPro songs in ~800 genres, converted to a token sequence format for generative language models like GPT2, TransformerXL, etc.
+2. an encoder/decoder (v1.1) that converts gp3,gp4,gp5 files to/from this token format.
 
-*\* Please contact Dadabots via email or twitter [@dadabots](http://twitter.com/dadabots) to request access to the dataset for research purposes.*
+*\* Please contact Dadabots or Pedro Sarmento via email or twitter, [@dadabots](http://twitter.com/dadabots) / [@umpedronosapato](https://twitter.com/umpedronosapato), to request access to the dataset for research purposes.*
 
-# Usage
+## Usage
 
 #### Requirements
 
@@ -29,8 +32,18 @@ python dadagp.py decode progmetal.tokens.txt progmetal.decoded.gp5
 ```
 
 Note:
-* only gp3, gp4, gp5 files supported by encoder.
-* rare combinations of instruments and tunings may not be supported.
-* banjo is not supported
-* instrument-change events are not supported
+* only gp3, gp4, gp5 files supported by encoder;
+* rare combinations of instruments and tunings may not be supported;
+* banjo is not supported;
+* instrument-change events are not supported;
+
+## How to Cite
+```
+@inproceedings{dadagp2021,
+  author = {Sarmento, Pedro and Kumar, Adarsh and Carr, CJ and Zukowski, Zack and Barthet, Mathieu and Yang, Yi-Hsuan},
+  booktitle = {Proceedings of the 22nd International Society for Music Information Retrieval Conference},
+  title = {{DadaGP: a Dataset of Tokenized GuitarPro Songs for Sequence Models}},
+  url = {https://archives.ismir.net/ismir2021/paper/000076.pdf},
+  year = {2021}
+}
 
