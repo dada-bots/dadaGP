@@ -1,6 +1,6 @@
 # DadaGP
 
-[**Paper**](https://archives.ismir.net/ismir2021/paper/000076.pdf) | [**Generation Results**](https://archives.ismir.net/ismir2021/paper/000076.pdf)
+[**Paper**](https://archives.ismir.net/ismir2021/paper/000076.pdf) | [**Generation Results**](https://drive.google.com/drive/folders/1USNH8olG9uy6vodslM3iXInBT725zult?usp=sharing)
 
 DadaGP is:
 
