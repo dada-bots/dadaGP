@@ -7,7 +7,7 @@ DadaGP is:
 * a dataset of 26,181 GuitarPro songs in 739 genres, converted to a token sequence format for generative language models like GPT2, TransformerXL, etc.
 * an encoder/decoder (v1.1) that converts gp3, gp4, gp5 files to/from this token format.
 
-Please contact Dadabots or Pedro Sarmento via email or twitter, [@dadabots](http://twitter.com/dadabots) / [@umpedronosapato](https://twitter.com/umpedronosapato), to request access to the dataset for research purposes.*
+*Please contact Dadabots or Pedro Sarmento via email or twitter, [@dadabots](http://twitter.com/dadabots) / [@umpedronosapato](https://twitter.com/umpedronosapato), to request access to the dataset for research purposes.*
 
 ## Usage
 
